@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>ASMOnline - Disassembly</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <header>
+        <div class="sticky-top">
+           <div class="transparent"></div>
+            <ul>
+                <div class="box" id="home"><li id="0"><a href="./index.html" tabindex="1">Home</a></li></div>
+                <div class="box_cur" id="disasm"><li id="1">Disassembly</li></div>
+                <div class="box" id="asm"><li id="2"><a href="./asm.html" tabindex="2">Assembly</a></li></div>
+            </ul>
+        </div>
+    </header>
+    <article class="inner">
+<div style='font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;line-height: 0.8em;'>
+<h2>Disassembly</h2>
+<div style="width:94%;background-color: #F3F3F3;border:2px solid #EDEDED;margin: 0 1%;padding: 1% 1%">
+	<select id="disasm_mode" onchange="" style="width:90%;height:2.5vh">
+		  <option value="ARCH_X86_32">         x86</option>
+		  <option value="ARCH_X86_64">         x86-64</option>
+		  <option value="ARCH_ARM_ARM">        ARM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLittle-Endian</option>
+		  <option value="ARCH_ARM_ARM_BE">     ARM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBig-Endian</option>
+		  <option value="ARCH_MIPS_MIPS32">    MIPS32&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLittle-Endian</option>
+		  <option value="ARCH_MIPS_MIPS32_BE"> MIPS32&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBig-Endian</option>
+		  <option value="ARCH_ARM_THUMB">      ARM Thumb&nbsp&nbsp&nbsp&nbsp&nbspLittle-Endian</option>
+		  <option value="ARCH_ARM_THUMB_BE">   ARM Thumb&nbsp&nbsp&nbsp&nbsp&nbspBig-Endian</option>
+		  <option value="ARCH_MIPS_MIPS64">    MIPS64&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLittle-Endian</option>
+		  <option value="ARCH_MIPS_MIPS64_BE"> MIPS64&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBig-Endian</option>
+		  <option value="ARCH_X86_16">         x86-16</option>
+		  <option value="ARCH_SPARC">          SPARC</option>
+	</select>
+	<button id="disassembly_execute" onclick="defaultCommand(event.target || event.srcElement);" style="float:right;width:10%">Assemble</button>
+</div>
+<div style="float:left;background-color: #F3F3F3;border:2px solid #EDEDED;height: 20vw;margin: 2% 1%;padding: 1% 1% 3%;width: 45%">
+			<b>Mnemonic</b>
+			<textarea id="disasm_mnemonic" aria-required="true" maxlength="65525" rows=15 cols=50 name="mnemonic" onmouseleave="mnemonic(event)" style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:100%"></textarea><br/><br/>
+</div>
+<div style="float:left;background-color: #F3F3F3;border:2px solid #EDEDED;height: 20vw;margin: 2% 1%;padding: 1% 1% 3%;width: 45%">
+			<b>Hex</b>
+			<textarea id="disasm_hex" aria-required="true" maxlength="65525" rows=15 cols=50 name="hex" onmouseleave="hex(event)" style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:100%"></textarea><br/><br/>
+</div>
+<div id="mnemonic_hash" hidden></div>
+<div id="hex_hash" hidden></div>
+</div>
+    </article>
+    <script src="keystone.min.js"></script>
+    <script src="capstone.min.js"></script>
+    <script src="disasmscript.js"></script>
+</body>
+
+</html>
