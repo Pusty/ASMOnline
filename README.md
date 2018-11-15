@@ -24,3 +24,4 @@ Considering I haven't actually needed to use all architectures for actual usage 
 https://alexaltea.github.io/keystone.js/
 https://alexaltea.github.io/unicorn.js/
 https://alexaltea.github.io/capstone.js/
+https://github.com/lonekorean/highlight-within-textarea

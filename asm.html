@@ -4,8 +4,34 @@
     <meta charset="utf-8"/>
     <title>ASMOnline - Assembly</title>
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="dependencies/jquery.highlight-within-textarea.css">
+    <script src="dependencies/jquery-3.3.1.min.js"></script>
+    <script src="dependencies/jquery.highlight-within-textarea.js"></script>
+    <script src="dependencies/keystone.min.js"></script>
+    <script src="dependencies/unicorn.min.js"></script>
+    <script src="asmscript.js"></script>
+    
+    	<style>
+			.hwt-content {
+                font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+                line-height: 1.3em;
+                font-size: 12px;
+                box-sizing:border-box;
+                -moz-box-sizing:border-box;
+                width:100%;
+                height:15vw;
+			}
+            .hwt-container {
+                background-color: #FFFFFF !important;
+			}
+
+            .hwt-content mark.red {
+				background-color: #ffc9c9;
+			}
+		</style>
+
 </head>
-<body>
+<body onload="localStorageLoad()">
     <header>
         <div class="sticky-top">
            <div class="transparent"></div>
@@ -23,7 +49,7 @@
 	<div style="background-color: #F3F3F3;border:2px solid #EDEDED;margin: 0 1%;padding: 0 2.5% 2.5%;height: 20vw">
 		<br/>
 		<form onsubmit="return false">
-			<select id="asm_mode" onchange="" style="width:100%">
+			<select id="asm_mode" onchange="resetSingle()" style="width:100%">
 				  <option value="ARCH_X86_32">x86</option>
 				  <option value="ARCH_X86_64">x86-64</option>
 				  <option value="ARCH_ARM_ARM">ARM</option>
@@ -33,23 +59,21 @@
 				  <option value="ARCH_X86_16">x86-16</option>
 				  <option value="ARCH_SPARC">SPARC</option>
 			</select><br/><br/>
-			<textarea id="asm_data" aria-required="true" maxlength="65525" rows=10 cols=50 name="asm" style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:15vw"></textarea><br/><br/>
+			<textarea id="asm_data" onkeypress="return resetSingle()" aria-required="true" maxlength="65525" rows=10 cols=50 name="asm" style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:15vw"></textarea><br/><br/>
 			<button id="assembly_execute" onclick="defaultCommand(event.target || event.srcElement);">Execute</button>
+            <button id="assembly_execute_step" onclick="singleStep(event.target || event.srcElement);">Step</button>
 		</form>
 	</div>
 	<div style="background-color: #F3F3F3;border:2px solid #EDEDED;margin: 9% 1%;padding: 3.5% 2.5% 3.5%;height:7vw">
 		<textarea id="asm_bytecode" maxlength="65525" rows=5 cols=50 name="asm_bytecode" style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:100%"></textarea>
-	</div>
+    </div>
 </div>
-<div style="float:left;margin: 0px 1%;padding: 0% 2.5%;min-height:32.5vw;min-width:20%;width:40%;background-color: #F3F3F3;border:2px solid #EDEDED;line-height: 1.2em;">
+<div style="float:left;margin: 0px 1%;padding: 0% 2.5%;min-height:32.4vw;min-width:20%;width:40%;background-color: #F3F3F3;border:2px solid #EDEDED;line-height: 1.2em;">
 	<div id="asm_output"></div>
 </div>
 
 </div>
     </article>
-    <script src="keystone.min.js"></script>
-    <script src="unicorn.min.js"></script>
-    <script src="asmscript.js"></script>
 </body>
 
 </html>
